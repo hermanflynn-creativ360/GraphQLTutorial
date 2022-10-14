@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Mutation\" />
-    <Folder Include="Query\" />
     <Folder Include="Schema\" />
   </ItemGroup>
 
