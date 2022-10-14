@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Mutation\" />
-    <Folder Include="Schema\" />
   </ItemGroup>
 
 </Project>

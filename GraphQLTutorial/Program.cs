@@ -1,7 +1,26 @@
+using GraphQL.Server;
+using GraphQL.Types;
+using GraphQLTutorial.Interfaces;
+using GraphQLTutorial.Query;
+using GraphQLTutorial.Schema;
+using GraphQLTutorial.Services;
+using GraphQLTutorial.Type;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddTransient<IProject, ProductService>();
+builder.Services.AddSingleton<ProductType>();
+builder.Services.AddSingleton<ProductQuery>();
+builder.Services.AddSingleton<ISchema, ProductSchema>();
+
+builder.Services.AddGraphQL(options => 
+{
+    options.EnableMetrics = false;
+}).AddSystemTextJson();
+
+
 
 var app = builder.Build();
 
@@ -13,12 +32,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+app.UseGraphiQL("/graphql");
+app.UseGraphQL<ISchema>();
+
 app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
 
 app.MapRazorPages();
 
