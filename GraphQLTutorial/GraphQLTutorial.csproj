@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mutation\" />
+    <Folder Include="Type\NewFolder\" />
   </ItemGroup>
 
 </Project>

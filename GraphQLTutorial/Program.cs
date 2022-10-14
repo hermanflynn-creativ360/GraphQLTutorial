@@ -5,6 +5,8 @@ using GraphQLTutorial.Query;
 using GraphQLTutorial.Schema;
 using GraphQLTutorial.Services;
 using GraphQLTutorial.Type;
+using GraphiQl;
+using GraphQLTutorial.Mutation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddTransient<IProject, ProductService>();
 builder.Services.AddSingleton<ProductType>();
 builder.Services.AddSingleton<ProductQuery>();
+builder.Services.AddSingleton<ProductMutation>();
 builder.Services.AddSingleton<ISchema, ProductSchema>();
 
 builder.Services.AddGraphQL(options => 
@@ -32,7 +35,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseGraphiQL("/graphql");
+app.UseGraphiQl("/graphql");
 app.UseGraphQL<ISchema>();
 
 app.UseStaticFiles();
